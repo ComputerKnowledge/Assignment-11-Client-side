@@ -3,6 +3,16 @@ import { NavLink } from "react-router-dom";
 import Auth from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user, deleteAUser, logOutUser } = useContext(Auth);
+  const handleDelete = () => {
+    deleteAUser().then((res) => {
+      console.log(res);
+    });
+  };
+  const handleLogOut = () => {
+    logOutUser().then((res) => console.log(res));
+  };
+
   const link = (
     <>
       <NavLink to="/home">home</NavLink>
@@ -38,13 +48,19 @@ const Navbar = () => {
             {link}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">{user?.email}</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <a className="btn" onClick={handleDelete}>
+          DeleteMe
+        </a>
+        <a className="btn" onClick={handleLogOut}>
+          LogOutMe
+        </a>
+        <img src={user?.photoURL} alt="" />
       </div>
     </div>
   );
