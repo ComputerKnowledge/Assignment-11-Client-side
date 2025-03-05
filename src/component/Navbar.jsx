@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import Auth from "../context/AuthContext";
 
 const Navbar = () => {
   const link = (
@@ -7,7 +8,6 @@ const Navbar = () => {
       <NavLink to="/home">home</NavLink>
       <NavLink to="/login">login</NavLink>
       <NavLink to="/register">Register</NavLink>
-      <NavLink to="/login">login</NavLink>
     </>
   );
   return (
@@ -33,7 +33,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow "
           >
             {link}
           </ul>
@@ -41,7 +41,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{link}</ul>
+        <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>
