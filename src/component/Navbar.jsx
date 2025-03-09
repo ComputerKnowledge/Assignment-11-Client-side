@@ -17,7 +17,7 @@ const Navbar = () => {
     <>
       <NavLink to="/">home</NavLink>
       <NavLink to="/assignments">Assignments</NavLink>
-      <NavLink to="/pendingAssignments">Pending Assignments</NavLink>
+      {user && <NavLink to="/pendingAssignments">Pending Assignments</NavLink>}
     </>
   );
   return (
@@ -54,30 +54,45 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
       </div>
       <div className="navbar-end">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="">
-            <div className="relative group">
-              <img
-                className="w-12 h-12 rounded-full "
-                src={user?.photoURL}
-                alt=""
-              />
-              <div className="font-bold hidden group-hover:block absolute right-0 cursor-default">
-                {user?.displayName}
+        {user ? (
+          <>
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="">
+                <div className="relative group">
+                  <img
+                    className="w-12 h-12 rounded-full "
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                  <div className="font-bold hidden group-hover:block absolute right-0 cursor-default">
+                    {user?.displayName}
+                  </div>
+                </div>
               </div>
+              <ul
+                tabIndex={0}
+                className="menu p-0 menu-sm dropdown-content text-left bg-base-100 rounded-box z-1 mt-3 w-52  shadow"
+              >
+                <Link to="/createAssignments">Create Assignments</Link>
+                <Link to="/attemptedAssignments">My Attempted Assignments</Link>
+              </ul>
             </div>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu p-0 menu-sm dropdown-content text-left bg-base-100 rounded-box z-1 mt-3 w-52  shadow"
-          >
-            <Link to="/createAssignments">Create Assignments</Link>
-            <Link to="/attemptedAssignments">My Attempted Assignments</Link>
-          </ul>
-        </div>
-        <a className="btn btn-primary ml-4" onClick={handleLogOut}>
-          Log Out
-        </a>
+            <a className="btn btn-soft btn-info ml-4" onClick={handleLogOut}>
+              Log Out
+            </a>
+          </>
+        ) : (
+          <>
+            <div className="space-x-1">
+              <button className="btn btn-soft btn-info btn-xs sm:btn-md">
+                <Link to="/login">Login</Link>
+              </button>
+              <button className="btn btn-soft btn-info btn-xs sm:btn-md">
+                <Link to="/register">Register</Link>
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

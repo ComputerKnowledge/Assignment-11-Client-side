@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Auth from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { loginUser } = useContext(Auth);
@@ -17,7 +18,8 @@ const Login = () => {
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content">
+      <div className="hero-content block">
+        <h1 className="text-4xl font-bold mb-8">Log in now !</h1>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
             <form onSubmit={handleLogin}>
@@ -41,6 +43,13 @@ const Login = () => {
                 </div>
                 <button className="btn btn-neutral mt-4">Login</button>
               </fieldset>
+              <p className="pt-4">
+                Didn't register yet?{" "}
+                <Link to="/register" className="text-red-400">
+                  Resister
+                </Link>{" "}
+                here.
+              </p>
             </form>
           </div>
         </div>
