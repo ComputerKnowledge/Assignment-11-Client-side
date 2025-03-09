@@ -2,6 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../MainLayout/MainLayout";
 import Login from "../authentication/Login";
 import Register from "../authentication/Register";
+import Assignment from "../component/Assignment";
+import PrivateRoute from "../authentication/PrivateRoute";
+import PendingAssignment from "../component/PendingAssingment";
+import HomePage from "../component/HomePage";
+import CreateAssignments from "../component/CreateAssignments";
+import AttemptedAssignments from "../component/AttemptedAssignments";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +16,36 @@ const router = createBrowserRouter([
     errorElement: <div>hey error</div>,
     children: [
       {
-        path: "/home",
-        element: <h1>hello the new way of routing</h1>,
+        path: "/",
+        element: <HomePage></HomePage>,
+      },
+      {
+        path: "/assignments",
+        element: <Assignment></Assignment>,
+      },
+      {
+        path: "/pendingAssignments",
+        element: (
+          <PrivateRoute>
+            <PendingAssignment></PendingAssignment>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/createAssignments",
+        element: (
+          <PrivateRoute>
+            <CreateAssignments></CreateAssignments>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/attemptedAssignments",
+        element: (
+          <PrivateRoute>
+            <AttemptedAssignments></AttemptedAssignments>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

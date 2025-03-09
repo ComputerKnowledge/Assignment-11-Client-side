@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Auth from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, deleteAUser, logOutUser } = useContext(Auth);
-  const handleDelete = () => {
-    deleteAUser().then((res) => {
-      console.log(res);
-    });
-  };
+  // const handleDelete = () => {
+  //   deleteAUser().then((res) => {
+  //     console.log(res);
+  //   });
+  // };
   const handleLogOut = () => {
     logOutUser().then((res) => console.log(res));
   };
 
   const link = (
     <>
-      <NavLink to="/home">home</NavLink>
-      <NavLink to="/login">login</NavLink>
-      <NavLink to="/register">Register</NavLink>
+      <NavLink to="/">home</NavLink>
+      <NavLink to="/assignments">Assignments</NavLink>
+      <NavLink to="/pendingAssignments">Pending Assignments</NavLink>
     </>
   );
   return (
@@ -54,13 +54,30 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn" onClick={handleDelete}>
-          DeleteMe
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="">
+            <div className="relative group">
+              <img
+                className="w-12 h-12 rounded-full "
+                src={user?.photoURL}
+                alt=""
+              />
+              <div className="font-bold hidden group-hover:block absolute right-0 cursor-default">
+                {user?.displayName}
+              </div>
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu p-0 menu-sm dropdown-content text-left bg-base-100 rounded-box z-1 mt-3 w-52  shadow"
+          >
+            <Link to="/createAssignments">Create Assignments</Link>
+            <Link to="/attemptedAssignments">My Attempted Assignments</Link>
+          </ul>
+        </div>
+        <a className="btn btn-primary ml-4" onClick={handleLogOut}>
+          Log Out
         </a>
-        <a className="btn" onClick={handleLogOut}>
-          LogOutMe
-        </a>
-        <img src={user?.photoURL} alt="" />
       </div>
     </div>
   );
