@@ -1,11 +1,17 @@
-import React from "react";
+// import React, { useEffect } from "react";
+import axios from "axios";
 
 const CreateAssignments = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    // console.log(data);
+
+    axios.get("http://localhost:5000/").then((res) => console.log(res.data));
+    // fetch("http://localhost:5000/").then((res) =>
+    //   res.json().then((data) => console.log(data))
+    // );
   };
   return (
     <div>
