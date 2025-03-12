@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
-      console.log(user?.email, user?.photoURL);
+      // console.log(user?.email, user?.photoURL);
     });
     return () => {
       subscribe();

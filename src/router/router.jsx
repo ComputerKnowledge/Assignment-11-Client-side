@@ -22,6 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/assignments",
         element: <Assignment></Assignment>,
+        // loader: () => fetch("http://localhost:5000/assignments"),
       },
       {
         path: "/pendingAssignments",
