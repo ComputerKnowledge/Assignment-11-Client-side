@@ -86,7 +86,9 @@ const CreateAssignments = () => {
               name="dueDate"
             />
           </fieldset>
-          <button className="btn w-full btn-neutral mt-4">Login</button>
+          <button className="btn w-full btn-neutral mt-4">
+            Add Assignment
+          </button>
         </fieldset>
       </form>
     </div>

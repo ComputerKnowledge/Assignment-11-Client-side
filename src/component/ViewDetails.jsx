@@ -14,6 +14,9 @@ const ViewDetails = () => {
     queryKey: ["singleAssignment"],
     queryFn: fetchDetailsWithId,
   });
+  const handleAssignmentSubmit = () => {
+    console.log("submission completed");
+  };
   if (isPending) {
     return <span className="loading loading-bars loading-xl"></span>;
   }
@@ -31,7 +34,51 @@ const ViewDetails = () => {
         <p>{data.dueDate}</p>
         <div className="space-x-4"></div>
       </div>
-      <button className="btn btn-soft btn-accent">Take Assignment</button>
+
+      <button
+        className="btn btn-soft btn-accent"
+        onClick={() => document.getElementById("my_modal_1").showModal()}
+      >
+        Take Assignment
+      </button>
+      <dialog id="my_modal_1" className="modal">
+        <div className="modal-box">
+          <div className="modal-action flex flex-col">
+            <div>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend text-left">
+                  {" "}
+                  Google Docs Link
+                </legend>
+                <input
+                  type="url"
+                  placeholder="give google docs link"
+                  name="googleUrl w-full"
+                  className="input"
+                />
+              </fieldset>
+              <fieldset className="fieldset">
+                <legend className="fieldset-legend text-left">
+                  Give a quick note
+                </legend>
+                <textarea
+                  className="textarea h-24 w-full"
+                  placeholder="Quick mote text"
+                  name="assignmentDescription"
+                ></textarea>
+              </fieldset>
+            </div>
+            <form method="dialog" className="">
+              <button
+                onClick={handleAssignmentSubmit}
+                className=" btn btn-soft btn-accent"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

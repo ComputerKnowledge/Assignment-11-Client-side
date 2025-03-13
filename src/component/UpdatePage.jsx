@@ -13,7 +13,8 @@ const UpdatePage = () => {
     queryKey: ["singleAssignment"],
     queryFn: fetchDetailsWithId,
   });
-  const handleUpdate = () => {
+  const handleUpdate = (e) => {
+    e.preventDefault();
     console.log("update this");
   };
   const handleOnChange = () => {
@@ -105,7 +106,7 @@ const UpdatePage = () => {
                 onChange={handleOnChange}
               />
             </fieldset>
-            <button className="btn w-full btn-neutral mt-4">Login</button>
+            <button className="btn w-full btn-neutral mt-4">Update</button>
           </fieldset>
         </form>
       </div>
