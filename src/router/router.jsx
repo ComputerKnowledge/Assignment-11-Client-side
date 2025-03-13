@@ -8,6 +8,8 @@ import PendingAssignment from "../component/PendingAssingment";
 import HomePage from "../component/HomePage";
 import CreateAssignments from "../component/CreateAssignments";
 import AttemptedAssignments from "../component/AttemptedAssignments";
+import ViewDetails from "../component/ViewDetails";
+import UpdatePage from "../component/UpdatePage";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AttemptedAssignments></AttemptedAssignments>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/viewDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails></ViewDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updatePage/:id",
+        element: (
+          <PrivateRoute>
+            <UpdatePage></UpdatePage>
           </PrivateRoute>
         ),
       },

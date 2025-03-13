@@ -18,15 +18,15 @@ const Assignment = () => {
     queryKey: ["assignments"],
     queryFn: fetchAssignments,
   });
-  console.log(data);
+  // console.log(data);
   if (isPending) {
-    return "Loading";
+    return <span className="loading loading-bars loading-xl"></span>;
   }
   return (
     <div>
       <h1>Hello form assignment page.</h1>
 
-      {data.map((data) => (
+      {data?.map((data) => (
         <SingleAssignment data={data} key={data._id}></SingleAssignment>
       ))}
     </div>
