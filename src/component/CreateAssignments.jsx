@@ -1,11 +1,18 @@
 // import React, { useEffect } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import Auth from "../context/AuthContext";
 
 const CreateAssignments = () => {
+  const { user } = useContext(Auth);
+  const createdBy = user.email;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    const totalData = { ...data, createdBy };
+    console.log(totalData);
     // console.log(data);
 
     // axios.get("http://localhost:5000/").then((res) => console.log(res.data));

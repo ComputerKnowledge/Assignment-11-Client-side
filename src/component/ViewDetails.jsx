@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
+import Auth from "../context/AuthContext";
 
 const ViewDetails = () => {
+  const { user } = useContext(Auth);
   const { id } = useParams();
+  const takingUser = user.email;
   // console.log(id);
   const fetchDetailsWithId = async () => {
     const res = await axios.get(`http://localhost:5000/assignments/${id}`);
@@ -14,8 +17,22 @@ const ViewDetails = () => {
     queryKey: ["singleAssignment"],
     queryFn: fetchDetailsWithId,
   });
-  const handleAssignmentSubmit = () => {
+  const handleAssignmentSubmit = (e) => {
+    e.preventDefault();
     console.log("submission completed");
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    axios
+      .post("http://localhost:5000/assignmentSubmit/", {
+        ...data,
+        takingUser,
+        status: "pending",
+      })
+      .then((res) => {
+        console.log(res);
+        document.getElementById("my_modal_1").close();
+      });
   };
   if (isPending) {
     return <span className="loading loading-bars loading-xl"></span>;
@@ -44,37 +61,33 @@ const ViewDetails = () => {
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
           <div className="modal-action flex flex-col">
-            <div>
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend text-left">
-                  {" "}
-                  Google Docs Link
-                </legend>
-                <input
-                  type="url"
-                  placeholder="give google docs link"
-                  name="googleUrl w-full"
-                  className="input"
-                />
-              </fieldset>
-              <fieldset className="fieldset">
-                <legend className="fieldset-legend text-left">
-                  Give a quick note
-                </legend>
-                <textarea
-                  className="textarea h-24 w-full"
-                  placeholder="Quick mote text"
-                  name="assignmentDescription"
-                ></textarea>
-              </fieldset>
-            </div>
-            <form method="dialog" className="">
-              <button
-                onClick={handleAssignmentSubmit}
-                className=" btn btn-soft btn-accent"
-              >
-                Submit
-              </button>
+            <form onSubmit={handleAssignmentSubmit}>
+              <div>
+                <fieldset className="fieldset">
+                  <legend className="fieldset-legend text-left">
+                    {" "}
+                    Google Docs Link
+                  </legend>
+                  <input
+                    type="url"
+                    placeholder="give google docs link"
+                    name="googleUrl"
+                    className="input"
+                  />
+                </fieldset>
+                <fieldset className="fieldset">
+                  <legend className="fieldset-legend text-left">
+                    Give a quick note
+                  </legend>
+                  <textarea
+                    className="textarea h-24 w-full"
+                    placeholder="Quick mote text"
+                    name="assignmentDescription"
+                  ></textarea>
+                </fieldset>
+              </div>
+
+              <button className=" btn btn-soft btn-accent">Submit</button>
             </form>
           </div>
         </div>
