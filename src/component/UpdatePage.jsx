@@ -19,7 +19,7 @@ const UpdatePage = () => {
   // console.log(user.email, data?.createdBy);
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log("update this");
+    // console.log("update this");
     const formData = new FormData(e.target);
     const newData = Object.fromEntries(formData.entries());
     const totalData = { ...newData, createdBy };
@@ -28,7 +28,7 @@ const UpdatePage = () => {
     if (user.email == data?.createdBy) {
       axios
         .put(`http://localhost:5000/assignments/${data._id}`, totalData)
-        .then((res) => console.log(res));
+        .then((res) => {});
     }
   };
 

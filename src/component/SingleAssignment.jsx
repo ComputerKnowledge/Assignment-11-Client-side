@@ -7,7 +7,7 @@ import Auth from "../context/AuthContext";
 const SingleAssignment = ({ data }) => {
   const { user } = useContext(Auth);
   // console.log(user.email, data.email);
-  console.log(data);
+  // console.log(data);
   const handleDelete = (id) => {
     console.log(id);
     if (user.email == data.createdBy) {

@@ -19,7 +19,10 @@ const AttemptedAssignments = () => {
   if (isPending) {
     return <span className="loading loading-bars loading-xl"></span>;
   }
-  console.log(data);
+  if (data.length === 0) {
+    return <div>you have not attempted any assignment yet!</div>;
+  }
+  // console.log(data);
   return (
     <div>
       <h3>hey you have Attempted to these assignments.</h3>
@@ -31,6 +34,7 @@ const AttemptedAssignments = () => {
           <p>{data.assignmentDescription}</p>
           <p>{data.status}</p>
           <p>{data.takingUser}</p>
+          <p>{data.mark && `you have get ${data.mark} in this assignment`}</p>
         </div>
       ))}
     </div>

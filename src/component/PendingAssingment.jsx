@@ -17,7 +17,9 @@ const PendingAssignment = () => {
   if (isPending) {
     return <span className="loading loading-bars loading-xl"></span>;
   }
-  console.log(data);
+  if (data.length === 0) {
+    return <div>Nothing to do here !</div>;
+  }
 
   return (
     <div>

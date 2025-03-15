@@ -8,6 +8,7 @@ const ViewDetails = () => {
   const { user } = useContext(Auth);
   const { id } = useParams();
   const takingUser = user.email;
+  const examinee = user.displayName;
   // console.log(id);
   const fetchDetailsWithId = async () => {
     const res = await axios.get(`http://localhost:5000/assignments/${id}`);
@@ -22,15 +23,16 @@ const ViewDetails = () => {
     console.log("submission completed");
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    // console.log(data);
     axios
       .post("http://localhost:5000/assignmentSubmit/", {
         ...data,
         takingUser,
+        examinee,
         status: "pending",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         document.getElementById("my_modal_1").close();
       });
   };
@@ -80,7 +82,7 @@ const ViewDetails = () => {
                     type="url"
                     placeholder="give google docs link"
                     name="googleUrl"
-                    className="input"
+                    className="input w-full"
                   />
                 </fieldset>
                 <fieldset className="fieldset">
@@ -90,7 +92,7 @@ const ViewDetails = () => {
                   <textarea
                     className="textarea h-24 w-full"
                     placeholder="Quick mote text"
-                    name="assignmentDescription"
+                    name="quickNote"
                   ></textarea>
                 </fieldset>
               </div>
