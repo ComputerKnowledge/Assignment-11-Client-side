@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
+import Auth from "../context/AuthContext";
 
 const UpdatePage = () => {
+  const { user } = useContext(Auth);
   const { id } = useParams();
   const fetchDetailsWithId = async () => {
     const res = await axios.get(`http://localhost:5000/assignments/${id}`);
@@ -13,12 +15,25 @@ const UpdatePage = () => {
     queryKey: ["singleAssignment"],
     queryFn: fetchDetailsWithId,
   });
+  const createdBy = data?.createdBy;
+  // console.log(user.email, data?.createdBy);
   const handleUpdate = (e) => {
     e.preventDefault();
     console.log("update this");
+    const formData = new FormData(e.target);
+    const newData = Object.fromEntries(formData.entries());
+    const totalData = { ...newData, createdBy };
+    // console.log(totalData);
+    // console.log(data);
+    if (user.email == data?.createdBy) {
+      axios
+        .put(`http://localhost:5000/assignments/${data._id}`, totalData)
+        .then((res) => console.log(res));
+    }
   };
+
   const handleOnChange = () => {
-    //do nothing.
+    // console.log("hello world");
   };
 
   if (isPending) {
@@ -40,7 +55,7 @@ const UpdatePage = () => {
                 className="input w-full"
                 placeholder="Type here"
                 name="assignmentTitle"
-                value={data.assignmentTitle}
+                defaultValue={data.assignmentTitle}
                 onChange={handleOnChange}
               />
             </fieldset>
@@ -53,7 +68,7 @@ const UpdatePage = () => {
                   className="textarea h-24 w-full"
                   placeholder="Bio"
                   name="assignmentDescription"
-                  value={data.assignmentDescription}
+                  defaultValue={data.assignmentDescription}
                   onChange={handleOnChange}
                 ></textarea>
               </fieldset>
@@ -65,7 +80,7 @@ const UpdatePage = () => {
                 className="input w-full"
                 placeholder="Type here"
                 name="totalMarks"
-                value={data.totalMarks}
+                defaultValue={data.totalMarks}
                 onChange={handleOnChange}
               />
             </fieldset>
@@ -76,7 +91,7 @@ const UpdatePage = () => {
                 className="input w-full"
                 placeholder="Type here"
                 name="thumbnail"
-                value={data.thumbnail}
+                defaultValue={data.thumbnail}
                 onChange={handleOnChange}
               />
             </fieldset>

@@ -60,6 +60,14 @@ const ViewDetails = () => {
       </button>
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
+          <div className="text-right">
+            <button
+              onClick={() => document.getElementById("my_modal_1").close()}
+              className=" btn btn-soft btn-accent "
+            >
+              X
+            </button>
+          </div>
           <div className="modal-action flex flex-col">
             <form onSubmit={handleAssignmentSubmit}>
               <div>
@@ -87,7 +95,9 @@ const ViewDetails = () => {
                 </fieldset>
               </div>
 
-              <button className=" btn btn-soft btn-accent">Submit</button>
+              <div>
+                <button className=" btn btn-soft btn-accent">Submit</button>
+              </div>
             </form>
           </div>
         </div>

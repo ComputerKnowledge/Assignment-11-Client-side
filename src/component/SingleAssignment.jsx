@@ -1,12 +1,24 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Auth from "../context/AuthContext";
 
 const SingleAssignment = ({ data }) => {
-  //   console.log(data);
-  //   console.log("hello world");
-  const handleDelete = (_id) => {
-    console.log(_id);
+  const { user } = useContext(Auth);
+  // console.log(user.email, data.email);
+  console.log(data);
+  const handleDelete = (id) => {
+    console.log(id);
+    if (user.email == data.createdBy) {
+      axios
+        .delete(`http://localhost:5000/assignments/${id}`)
+        .then((res) => console.log(res));
+    } else {
+      console.log("you will not able to delete this assignment");
+    }
   };
+
   return (
     <div>
       <h2 className="mt-10">hello world</h2>
@@ -16,6 +28,7 @@ const SingleAssignment = ({ data }) => {
       <p>{data.totalMarks}</p>
       <p>{data.thumbnail}</p>
       <p>{data.dueDate}</p>
+      <p>{data.createdBy}</p>
       <div className="space-x-4">
         <button className="btn btn-soft btn-accent">
           <Link to={`/viewDetails/${data._id}`}> View</Link>

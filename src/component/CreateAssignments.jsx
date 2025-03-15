@@ -12,12 +12,12 @@ const CreateAssignments = () => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     const totalData = { ...data, createdBy };
-    console.log(totalData);
+    // console.log(totalData);
     // console.log(data);
 
     // axios.get("http://localhost:5000/").then((res) => console.log(res.data));
     axios
-      .post("http://localhost:5000/assignments", data)
+      .post("http://localhost:5000/assignments", totalData)
       .then((res) => console.log(res.data.insertedId));
     // fetch("http://localhost:5000/").then((res) =>
     //   res.json().then((data) => console.log(data))
