@@ -11,7 +11,9 @@ const ViewDetails = () => {
   const examinee = user.displayName;
   // console.log(id);
   const fetchDetailsWithId = async () => {
-    const res = await axios.get(`http://localhost:5000/assignments/${id}`);
+    const res = await axios.get(`http://localhost:5000/assignments/${id}`, {
+      withCredentials: true,
+    });
     return res.data;
   };
   const { isPending, data } = useQuery({

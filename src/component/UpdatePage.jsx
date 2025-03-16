@@ -8,7 +8,9 @@ const UpdatePage = () => {
   const { user } = useContext(Auth);
   const { id } = useParams();
   const fetchDetailsWithId = async () => {
-    const res = await axios.get(`http://localhost:5000/assignments/${id}`);
+    const res = await axios.get(`http://localhost:5000/assignments/${id}`, {
+      withCredentials: true,
+    });
     return res.data;
   };
   const { isPending, data } = useQuery({

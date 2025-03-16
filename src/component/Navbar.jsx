@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Auth from "../context/AuthContext";
 
 const Navbar = () => {
+  const [theme, setTheme] = useState("");
   const { user, deleteAUser, logOutUser } = useContext(Auth);
   // const handleDelete = () => {
   //   deleteAUser().then((res) => {
@@ -10,7 +11,13 @@ const Navbar = () => {
   //   });
   // };
   const handleLogOut = () => {
-    logOutUser().then((res) => console.log(res));
+    logOutUser().then((res) => {
+      // console.log(res);
+    });
+  };
+  const handleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
   };
 
   const link = (
@@ -41,6 +48,7 @@ const Navbar = () => {
               />{" "}
             </svg>
           </div>
+
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow "
@@ -56,6 +64,12 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
+            <input
+              type="checkbox"
+              value="synthwave"
+              className="toggle theme-controller mr-4"
+              onClick={handleTheme}
+            />
             <div className="dropdown">
               <div tabIndex={0} role="button" className="">
                 <div className="relative group">

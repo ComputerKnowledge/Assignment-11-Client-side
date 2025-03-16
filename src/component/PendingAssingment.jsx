@@ -5,7 +5,9 @@ import SinglePending from "./SinglePending";
 
 const PendingAssignment = () => {
   const fetchAssignments = async () => {
-    const res = await axios.get("http://localhost:5000/assignmentSubmit");
+    const res = await axios.get("http://localhost:5000/assignmentSubmit", {
+      withCredentials: true,
+    });
     // console.log("hello world");
     // console.log(res);
     return res.data;
