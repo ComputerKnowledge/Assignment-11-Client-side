@@ -11,6 +11,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import auth from "../firebase.init";
+import axios from "axios";
 
 const provider = new GoogleAuthProvider();
 
@@ -45,10 +46,38 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const subscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
-      // console.log(user?.email, user?.photoURL);
+    const subscribe = onAuthStateChanged(auth, (currentUser) => {
+      // console.log(user);
+      setUser(currentUser);
+      const email = currentUser?.email;
+
+      if (email) {
+        axios
+          .post(
+            "http://localhost:5000/jwt",
+            { email },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+            setLoading(false);
+          });
+      } else {
+        axios
+          .post(
+            "http://localhost:5000/logout",
+            {},
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+            setLoading(false);
+          });
+      }
     });
     return () => {
       subscribe();

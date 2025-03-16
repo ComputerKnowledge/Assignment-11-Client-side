@@ -14,13 +14,13 @@ const Login = () => {
     // console.log(data);
     e.target.reset();
     loginUser(email, password).then((res) => {
-      console.log(res);
-      const user = { email: res.user.email };
-      axios
-        .post("http://localhost:5000/jwt", user, {
-          withCredentials: true,
-        })
-        .then((res) => console.log(res.data));
+      // console.log(res);
+      // const user = { email: res.user.email };
+      // axios
+      //   .post("http://localhost:5000/jwt", user, {
+      //     withCredentials: true,
+      //   })
+      //   .then((res) => console.log(res.data));
     });
   };
   return (
