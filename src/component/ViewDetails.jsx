@@ -22,7 +22,7 @@ const ViewDetails = () => {
   });
   const handleAssignmentSubmit = (e) => {
     e.preventDefault();
-    console.log("submission completed");
+    // console.log("submission completed");
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     // console.log(data);

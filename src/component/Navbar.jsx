@@ -5,11 +5,7 @@ import Auth from "../context/AuthContext";
 const Navbar = () => {
   const [theme, setTheme] = useState("");
   const { user, deleteAUser, logOutUser } = useContext(Auth);
-  // const handleDelete = () => {
-  //   deleteAUser().then((res) => {
-  //     console.log(res);
-  //   });
-  // };
+  console.log(user?.photoURL);
   const handleLogOut = () => {
     logOutUser().then((res) => {
       // console.log(res);

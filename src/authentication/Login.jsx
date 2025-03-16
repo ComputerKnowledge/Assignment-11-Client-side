@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { loginUser } = useContext(Auth);
+  const { loginUser, loginWithGoogle } = useContext(Auth);
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,14 +13,11 @@ const Login = () => {
     const { email, password } = data;
     // console.log(data);
     e.target.reset();
-    loginUser(email, password).then((res) => {
+    loginUser(email, password).then((res) => {});
+  };
+  const handleGoogleLogin = () => {
+    loginWithGoogle().then((res) => {
       // console.log(res);
-      // const user = { email: res.user.email };
-      // axios
-      //   .post("http://localhost:5000/jwt", user, {
-      //     withCredentials: true,
-      //   })
-      //   .then((res) => console.log(res.data));
     });
   };
   return (
@@ -37,6 +34,7 @@ const Login = () => {
                   className="input"
                   name="email"
                   placeholder="Email"
+                  required
                 />
                 <label className="fieldset-label">Password</label>
                 <input
@@ -44,6 +42,7 @@ const Login = () => {
                   className="input"
                   name="password"
                   placeholder="Password"
+                  required
                 />
                 <div>
                   <a className="link link-hover">Forgot password?</a>
@@ -57,6 +56,13 @@ const Login = () => {
                 </Link>{" "}
                 here.
               </p>
+              <button
+                type="button"
+                onClick={handleGoogleLogin}
+                className="w-full btn btn-soft"
+              >
+                google
+              </button>
             </form>
           </div>
         </div>

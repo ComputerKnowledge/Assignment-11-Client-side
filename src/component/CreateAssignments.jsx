@@ -1,7 +1,10 @@
-// import React, { useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import Auth from "../context/AuthContext";
+import Swal from "sweetalert2";
+// const Swal = require("sweetalert2");
+// import Swal from "sweetalert2";
+// import "sweetalert2/dist/sweetalert2.css";
 
 const CreateAssignments = () => {
   const { user } = useContext(Auth);
@@ -16,9 +19,10 @@ const CreateAssignments = () => {
     // console.log(data);
 
     // axios.get("http://localhost:5000/").then((res) => console.log(res.data));
-    axios
-      .post("http://localhost:5000/assignments", totalData)
-      .then((res) => console.log(res.data.insertedId));
+    axios.post("http://localhost:5000/assignments", totalData).then((res) => {
+      // console.log(res.data.insertedId);
+      Swal.fire("You have successfully created a assignment");
+    });
     // fetch("http://localhost:5000/").then((res) =>
     //   res.json().then((data) => console.log(data))
     // );

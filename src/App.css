@@ -44,5 +44,5 @@
 }
 
 .active {
-  background-color: red;
+  text-decoration: underline;
 }

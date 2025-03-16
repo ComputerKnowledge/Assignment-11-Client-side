@@ -1,8 +1,16 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import Auth from "../context/AuthContext";
 
 const SinglePending = ({ data }) => {
+  const { user } = useContext(Auth);
+  const handleModal = () => {
+    if (data.takingUser === user.email) {
+      return alert("hello world");
+    }
+    document.getElementById("my_modal_1").showModal();
+  };
   const handleMarking = (e) => {
     e.preventDefault();
     // console.log("marking");
@@ -12,7 +20,9 @@ const SinglePending = ({ data }) => {
     D.status = "completed";
     axios
       .put(`http://localhost:5000/assignmentSubmit/${data._id}`, { ...D })
-      .then((res) => console.log(res));
+      .then((res) => {
+        // console.log(res);
+      });
     document.getElementById("my_modal_1").close();
   };
   // if (false) {
@@ -29,10 +39,7 @@ const SinglePending = ({ data }) => {
       <p>{data.examinee}</p>
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <button
-        className="btn btn-soft btn-accent"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
-      >
+      <button className="btn btn-soft btn-accent" onClick={handleModal}>
         Give mark
       </button>
       <dialog id="my_modal_1" className="modal">
@@ -53,9 +60,7 @@ const SinglePending = ({ data }) => {
               google docs link
             </Link>
             <br />
-            <br />
-            <br />
-            <br />
+
             <p>{data.quickNote}</p>
             <fieldset className="fieldset">
               <legend className="fieldset-legend text-left">Give Mark</legend>

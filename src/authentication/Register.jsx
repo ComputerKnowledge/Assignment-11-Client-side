@@ -16,9 +16,9 @@ const Register = () => {
     };
 
     createUser(email, password).then((res) => {
-      console.log(res);
+      // console.log(res);
       updateUser(updatedDate).then((res) => {
-        console.log(res);
+        // console.log(res);
       });
     });
     e.target.reset();
@@ -37,6 +37,7 @@ const Register = () => {
                   className="input"
                   name="displayName"
                   placeholder="Name"
+                  required
                 />
                 <label className="fieldset-label">Photo URL</label>
                 <input
@@ -44,6 +45,7 @@ const Register = () => {
                   className="input"
                   name="photoURL"
                   placeholder="Photo URL"
+                  required
                 />
                 <label className="fieldset-label">Email</label>
                 <input
@@ -51,6 +53,7 @@ const Register = () => {
                   className="input"
                   placeholder="Email"
                   name="email"
+                  required
                 />{" "}
                 <label className="fieldset-label">Password</label>
                 <input
@@ -58,6 +61,7 @@ const Register = () => {
                   className="input"
                   placeholder="Password"
                   name="password"
+                  required
                 />{" "}
                 <button className="btn btn-neutral mt-4">Register</button>
                 <p className="pt-4 text-sm">
