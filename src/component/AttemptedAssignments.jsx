@@ -8,7 +8,8 @@ const AttemptedAssignments = () => {
 
   const fetchData = async () => {
     const res = await axios.get(
-      `http://localhost:5000/assignmentSubmit/${user.email}`
+      `http://localhost:5000/assignmentSubmit/${user.email}`,
+      { withCredentials: true }
     );
     return res.data;
   };
@@ -19,7 +20,7 @@ const AttemptedAssignments = () => {
   if (isPending) {
     return <span className="loading loading-bars loading-xl"></span>;
   }
-  if (data.length === 0) {
+  if (data?.length === 0) {
     return <div>you have not attempted any assignment yet!</div>;
   }
   // console.log(data);
