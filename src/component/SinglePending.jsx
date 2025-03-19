@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Auth from "../context/AuthContext";
 import Swal from "sweetalert2";
 
-const SinglePending = ({ P_assignment }) => {
+const SinglePending = ({ P_assignment, onDelete }) => {
   const [data, setData] = useState(P_assignment);
 
   const { user } = useContext(Auth);
@@ -14,7 +14,7 @@ const SinglePending = ({ P_assignment }) => {
     }
     document.getElementById("my_modal_1").showModal();
   };
-  const handleMarking = (e) => {
+  const handleMarking = (e, id) => {
     e.preventDefault();
     // console.log("marking");
     const formData = new FormData(e.target);
@@ -25,6 +25,7 @@ const SinglePending = ({ P_assignment }) => {
       .put(`http://localhost:5000/assignmentSubmit/${data._id}`, { ...D })
       .then((res) => {
         Swal.fire(`You give mark to ${data.examinee}'s assignment.`);
+        onDelete(id);
         document.getElementById("my_modal_1").close();
       });
   };
@@ -57,7 +58,7 @@ const SinglePending = ({ P_assignment }) => {
             </button>
           </div>
           <div className="modal-action flex flex-col">
-            <form onSubmit={handleMarking}>
+            <form onSubmit={(e) => handleMarking(e, data._id)}>
               <div className="">
                 <Link to={data.googleUrl} target="_blank">
                   See Assignment :{" "}
