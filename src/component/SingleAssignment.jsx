@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 const SingleAssignment = ({ data, onDelete, idx }) => {
   const { user } = useContext(Auth);
@@ -10,14 +11,15 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
   // console.log(user.email, data.email);
   // console.log(data);
   const handleDelete = (id) => {
-    console.log(id);
+    // console.log(id);
     if (user.email == data.createdBy) {
       axios.delete(`http://localhost:5000/assignments/${id}`).then((res) => {
-        console.log(res);
+        // console.log(res);
         onDelete(id);
+        Swal.fire("Data has been deleted successfully.");
       });
     } else {
-      console.log("you will not able to delete this assignment");
+      Swal.fire("No one can delete other's created assignment.");
     }
   };
 
@@ -29,6 +31,7 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
       <p>{data.assignmentDescription}</p>
       <p>{data.totalMarks}</p>
       <p>{data.thumbnail}</p>
+      <p>{data.difficultyLevel}</p>
       <p>{data.dueDate}</p>
       <p>{data.createdBy}</p>
       <div className="space-x-4">

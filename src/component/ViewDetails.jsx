@@ -78,9 +78,6 @@ const ViewDetails = () => {
           <div className="modal-action flex flex-col">
             <form onSubmit={handleAssignmentSubmit}>
               <div>
-                <Link to={`https://github.com/dashboard`} target="_blank">
-                  {data.dueDate}
-                </Link>
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend text-left">
                     {" "}
