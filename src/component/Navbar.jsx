@@ -1,20 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Auth from "../context/AuthContext";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState("");
+  const [theme, setTheme] = useState("dark");
   const { user, deleteAUser, logOutUser } = useContext(Auth);
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
   const handleLogOut = () => {
     logOutUser().then((res) => {
       // console.log(res);
     });
   };
   const handleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-    document.documentElement.setAttribute("data-theme", theme);
+    setTheme(theme === "light" ? "dark" : "light");
   };
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const link = (
     <>
@@ -83,8 +85,12 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu p-0 menu-sm dropdown-content text-left bg-base-100 rounded-box z-1 mt-3 w-52  shadow"
               >
-                <Link to="/createAssignments">Create Assignments</Link>
-                <Link to="/attemptedAssignments">My Attempted Assignments</Link>
+                <div className="space-y-4">
+                  <NavLink to="/createAssignments">Create Assignments</NavLink>
+                  <NavLink to="/attemptedAssignments">
+                    My Attempted Assignments
+                  </NavLink>
+                </div>
               </ul>
             </div>
             <a className="btn btn-soft btn-info ml-4" onClick={handleLogOut}>

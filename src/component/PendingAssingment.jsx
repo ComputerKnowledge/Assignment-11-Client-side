@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import SinglePending from "./SinglePending";
 
 const PendingAssignment = () => {
@@ -12,10 +12,12 @@ const PendingAssignment = () => {
     // console.log(res);
     return res.data;
   };
+
   const { isPending, data } = useQuery({
     queryKey: ["submission"],
     queryFn: fetchAssignments,
   });
+
   if (isPending) {
     return <span className="loading loading-bars loading-xl"></span>;
   }
@@ -26,7 +28,7 @@ const PendingAssignment = () => {
   return (
     <div>
       {data?.map((data) => (
-        <SinglePending key={data._id} data={data}></SinglePending>
+        <SinglePending key={data._id} P_assignment={data}></SinglePending>
       ))}
     </div>
   );

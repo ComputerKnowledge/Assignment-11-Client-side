@@ -1,5 +1,4 @@
 import React from "react";
-import Text from "../Text";
 
 const Banner = () => {
   return (
@@ -44,7 +43,6 @@ const Banner = () => {
           4
         </a>
       </div>
-      <Text></Text>
     </div>
   );
 };

@@ -1,13 +1,16 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../context/AuthContext";
+import Swal from "sweetalert2";
 
-const SinglePending = ({ data }) => {
+const SinglePending = ({ P_assignment }) => {
+  const [data, setData] = useState(P_assignment);
+
   const { user } = useContext(Auth);
   const handleModal = () => {
     if (data.takingUser === user.email) {
-      return alert("hello world");
+      return Swal.fire("No one can check his own assignments.");
     }
     document.getElementById("my_modal_1").showModal();
   };
@@ -21,24 +24,25 @@ const SinglePending = ({ data }) => {
     axios
       .put(`http://localhost:5000/assignmentSubmit/${data._id}`, { ...D })
       .then((res) => {
-        // console.log(res);
+        Swal.fire(`You give mark to ${data.examinee}'s assignment.`);
+        document.getElementById("my_modal_1").close();
       });
-    document.getElementById("my_modal_1").close();
   };
   // if (false) {
   //   return <div>No Pending assignment right now!</div>;
   // }
+  // console.log(data.googleUrl);
   return (
     <div>
-      <h2 className="mt-10">hello world</h2>
-      <p>{data._id}</p>
-      <p>{data.googleUrl}</p>
-      <p>{data.quickNote}</p>
-      <p>{data.status}</p>
-      <p>{data.takingUser}</p>
-      <p>{data.examinee}</p>
-
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
+      <div>
+        <h2 className="mt-10">hello world</h2>
+        <p>{data._id}</p>
+        <p>{data.googleUrl}</p>
+        <p>{data.quickNote}</p>
+        <p>{data.status}</p>
+        <p>{data.takingUser}</p>
+        <p>{data.examinee}</p>
+      </div>
       <button className="btn btn-soft btn-accent" onClick={handleModal}>
         Give mark
       </button>
@@ -47,50 +51,52 @@ const SinglePending = ({ data }) => {
           <div className="text-right">
             <button
               onClick={() => document.getElementById("my_modal_1").close()}
-              className="btn btn-soft btn-accent"
+              className=" btn btn-soft btn-accent "
             >
               X
             </button>
           </div>
-          <form action="" onSubmit={handleMarking}>
-            <Link
-              target="_blank"
-              to="https://docs.google.com/document/d/15kpdtq1Iz5B04ijQ661QEFgUNQFkYTXDZOBtoxBK0zE/edit?tab=t.0"
-            >
-              google docs link
-            </Link>
-            <br />
+          <div className="modal-action flex flex-col">
+            <form onSubmit={handleMarking}>
+              <div className="">
+                <Link to={data.googleUrl} target="_blank">
+                  See Assignment :{" "}
+                  <span className="text-blue-500 ">google docs link</span>
+                </Link>
+                <p className="bg-black mt-4 p-2 rounded-2xl">
+                  {data.quickNote}
+                </p>
+                <fieldset className="fieldset">
+                  <legend className="fieldset-legend text-left">
+                    {" "}
+                    Give mark
+                  </legend>
+                  <input
+                    type="number"
+                    placeholder="give mark"
+                    name="mark"
+                    className="input w-full"
+                    required
+                  />
+                </fieldset>
+                <fieldset className="fieldset">
+                  <legend className="fieldset-legend text-left">
+                    Give a feedback
+                  </legend>
+                  <textarea
+                    className="textarea h-24 w-full"
+                    placeholder="give feedback here"
+                    name="feedback"
+                    required
+                  ></textarea>
+                </fieldset>
+              </div>
 
-            <p>{data.quickNote}</p>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend text-left">Give Mark</legend>
-              <input
-                type="number"
-                className="input w-full"
-                placeholder="give mark"
-                name="mark"
-              />
-            </fieldset>
-            <fieldset className="fieldset">
-              <legend className="fieldset-legend text-left">
-                Give Feedback
-              </legend>
-              <textarea
-                className="textarea h-24 w-full"
-                placeholder="give your feedback here"
-                name="feedback"
-              ></textarea>
-            </fieldset>
-
-            <div className="modal-action">
-              <button
-                // onClick={() => document.getElementById("my_modal_1").close()}
-                className="btn btn-soft btn-accent"
-              >
-                Submit
-              </button>
-            </div>
-          </form>
+              <div>
+                <button className="mt-4 btn btn-soft btn-accent">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       </dialog>
     </div>

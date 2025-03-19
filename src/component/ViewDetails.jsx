@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, Link, useNavigate, useParams } from "react-router-dom";
 import Auth from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 const ViewDetails = () => {
   const { user } = useContext(Auth);
   const { id } = useParams();
+  const navigate = useNavigate();
   const takingUser = user.email;
   const examinee = user.displayName;
   // console.log(id);
@@ -34,8 +36,9 @@ const ViewDetails = () => {
         status: "pending",
       })
       .then((res) => {
-        // console.log(res);
+        Swal.fire("You have taken this assignment.\nGood Luck!");
         document.getElementById("my_modal_1").close();
+        navigate("/assignments");
       });
   };
   if (isPending) {
@@ -75,6 +78,9 @@ const ViewDetails = () => {
           <div className="modal-action flex flex-col">
             <form onSubmit={handleAssignmentSubmit}>
               <div>
+                <Link to={`https://github.com/dashboard`} target="_blank">
+                  {data.dueDate}
+                </Link>
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend text-left">
                     {" "}
@@ -85,6 +91,7 @@ const ViewDetails = () => {
                     placeholder="give google docs link"
                     name="googleUrl"
                     className="input w-full"
+                    required
                   />
                 </fieldset>
                 <fieldset className="fieldset">
@@ -95,12 +102,13 @@ const ViewDetails = () => {
                     className="textarea h-24 w-full"
                     placeholder="Quick mote text"
                     name="quickNote"
+                    required
                   ></textarea>
                 </fieldset>
               </div>
 
               <div>
-                <button className=" btn btn-soft btn-accent">Submit</button>
+                <button className="mt-4 btn btn-soft btn-accent">Submit</button>
               </div>
             </form>
           </div>
