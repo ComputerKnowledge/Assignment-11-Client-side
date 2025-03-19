@@ -10,7 +10,13 @@ const SinglePending = ({ P_assignment, onDelete }) => {
   const { user } = useContext(Auth);
   const handleModal = () => {
     if (data.takingUser === user.email) {
-      return Swal.fire("No one can check his own assignments.");
+      return Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "No one can marks own's assignment.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
     document.getElementById("my_modal_1").showModal();
   };
@@ -24,7 +30,13 @@ const SinglePending = ({ P_assignment, onDelete }) => {
     axios
       .put(`http://localhost:5000/assignmentSubmit/${data._id}`, { ...D })
       .then((res) => {
-        Swal.fire(`You give mark to ${data.examinee}'s assignment.`);
+        Swal.fire({
+          position: "top",
+          icon: "info",
+          title: `You give mark to ${data.examinee}'s assignment.`,
+          showConfirmButton: false,
+          timer: 2000,
+        });
         onDelete(id);
         document.getElementById("my_modal_1").close();
       });

@@ -21,7 +21,15 @@ const CreateAssignments = () => {
     // axios.get("http://localhost:5000/").then((res) => console.log(res.data));
     axios.post("http://localhost:5000/assignments", totalData).then((res) => {
       // console.log(res.data.insertedId);
-      Swal.fire("You have successfully created a assignment");
+
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Assignment created successfully",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      e.target.reset();
     });
     // fetch("http://localhost:5000/").then((res) =>
     //   res.json().then((data) => console.log(data))

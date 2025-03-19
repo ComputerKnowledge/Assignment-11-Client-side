@@ -36,7 +36,13 @@ const ViewDetails = () => {
         status: "pending",
       })
       .then((res) => {
-        Swal.fire("You have taken this assignment.\nGood Luck!");
+        Swal.fire({
+          position: "top",
+          icon: "info",
+          title: "You have taken this assignment\n Good Luck",
+          showConfirmButton: false,
+          timer: 2000,
+        });
         document.getElementById("my_modal_1").close();
         navigate("/assignments");
       });

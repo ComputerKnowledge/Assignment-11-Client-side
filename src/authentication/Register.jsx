@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Auth from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser, updateUser } = useContext(Auth);
@@ -14,13 +15,35 @@ const Register = () => {
       displayName,
       photoURL,
     };
-
-    createUser(email, password).then((res) => {
-      // console.log(res);
-      updateUser(updatedDate).then((res) => {
-        // console.log(res);
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (!passwordRegex.test(password)) {
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title:
+          "password must contain at least one uppercase one lowercase and 6 character long.",
+        showConfirmButton: false,
+        timer: 3000,
       });
-    });
+      return;
+    }
+
+    createUser(email, password)
+      .then((res) => {
+        // console.log(res);
+        updateUser(updatedDate).then((res) => {
+          // console.log(res);
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: err.message,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
     e.target.reset();
   };
   return (

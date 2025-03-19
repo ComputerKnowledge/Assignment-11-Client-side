@@ -35,9 +35,21 @@ const UpdatePage = () => {
         .then((res) => {
           // console.log(res.data);
           if (res.data.modifiedCount > 0) {
-            Swal.fire("Data updated successfully!");
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: "Assignment has been updated.",
+              showConfirmButton: false,
+              timer: 2000,
+            });
           } else {
-            Swal.fire("No field has been update.");
+            Swal.fire({
+              position: "top",
+              icon: "error",
+              title: "No field has been updated.",
+              showConfirmButton: false,
+              timer: 2000,
+            });
           }
           navigate("/assignments");
         });

@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import Auth from "../context/AuthContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser, loginWithGoogle } = useContext(Auth);
+  const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,12 +15,35 @@ const Login = () => {
     const { email, password } = data;
     // console.log(data);
     e.target.reset();
-    loginUser(email, password).then((res) => {});
+    loginUser(email, password)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: err.message,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
   };
   const handleGoogleLogin = () => {
-    loginWithGoogle().then((res) => {
-      // console.log(res);
-    });
+    loginWithGoogle()
+      .then((res) => {
+        // console.log(res);
+        navigate("/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: err.message,
+          showConfirmButton: false,
+          timer: 3000,
+        });
+      });
   };
   return (
     <div className="hero bg-base-200 min-h-screen">

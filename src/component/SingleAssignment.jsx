@@ -16,10 +16,22 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
       axios.delete(`http://localhost:5000/assignments/${id}`).then((res) => {
         // console.log(res);
         onDelete(id);
-        Swal.fire("Data has been deleted successfully.");
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Assignment created successfully.",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       });
     } else {
-      Swal.fire("No one can delete other's created assignment.");
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "No one can delete other's create assignment.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
   };
 
