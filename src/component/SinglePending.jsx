@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import Auth from "../context/AuthContext";
 import Swal from "sweetalert2";
 
-const SinglePending = ({ P_assignment, onDelete }) => {
-  const [data, setData] = useState(P_assignment);
-
+const SinglePending = ({ P_assignment: data, onDelete }) => {
+  // console.log(data);
   const { user } = useContext(Auth);
   const handleModal = () => {
     if (data.takingUser === user.email) {
@@ -27,6 +26,7 @@ const SinglePending = ({ P_assignment, onDelete }) => {
     const newData = Object.fromEntries(formData.entries());
     const D = { ...data, ...newData };
     D.status = "completed";
+    // console.log(D);
     axios
       .put(`http://localhost:5000/assignmentSubmit/${data._id}`, { ...D })
       .then((res) => {
@@ -46,19 +46,17 @@ const SinglePending = ({ P_assignment, onDelete }) => {
   // }
   // console.log(data.googleUrl);
   return (
-    <div>
-      <div>
-        <h2 className="mt-10">hello world</h2>
-        <p>{data._id}</p>
-        <p>{data.googleUrl}</p>
-        <p>{data.quickNote}</p>
-        <p>{data.status}</p>
-        <p>{data.takingUser}</p>
-        <p>{data.examinee}</p>
+    <div className="my-8">
+      <div className="text-xl font-semibold">
+        <p className="mt-10">
+          Evaluate {data.examinee}'s {data.assignmentTitle} assignment
+        </p>
+        <p>Click on the button to see assignment link and details</p>
       </div>
       <button className="btn btn-soft btn-accent" onClick={handleModal}>
         Give mark
       </button>
+
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
           <div className="text-right">

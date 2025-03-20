@@ -66,7 +66,10 @@ const UpdatePage = () => {
   // console.log(data);
   return (
     <div>
-      <h3>Welcome to the update page.</h3>
+      <h3 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl">
+        {" "}
+        Updata the assignment.
+      </h3>
       <div>
         <form onSubmit={handleUpdate}>
           <fieldset>
@@ -145,7 +148,7 @@ const UpdatePage = () => {
                 onChange={handleOnChange}
               />
             </fieldset>
-            <button className="btn w-full btn-neutral mt-4">Update</button>
+            <button className="btn w-full btn-neutral my-4">Update</button>
           </fieldset>
         </form>
       </div>

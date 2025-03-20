@@ -26,10 +26,13 @@ const ViewDetails = () => {
     e.preventDefault();
     // console.log("submission completed");
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    // console.log(data);
+    const Data = Object.fromEntries(formData.entries());
+    // const oldData = { ...data };
+    // console.log(oldData);
+    delete data._id;
     axios
       .post("http://localhost:5000/assignmentSubmit/", {
+        ...Data,
         ...data,
         takingUser,
         examinee,
@@ -53,20 +56,30 @@ const ViewDetails = () => {
   // console.log(data);
   return (
     <div>
-      <h3>View the details of the assignments.</h3>
-      <div>
-        <h2 className="mt-10">hello world</h2>
-        <p>{data._id}</p>
-        <p>{data.assignmentTitle}</p>
-        <p>{data.assignmentDescription}</p>
-        <p>{data.totalMarks}</p>
-        <p>{data.thumbnail}</p>
-        <p>{data.dueDate}</p>
-        <div className="space-x-4"></div>
+      <h3 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl">
+        View the details of the assignments.
+      </h3>
+      <div className="flex justify-center items-center">
+        <div className="w-[500px] space-y-2">
+          <h2 className="mt-10 text-2xl font-black">Assignment Details</h2>
+
+          <p>Title : {data.assignmentTitle}</p>
+          <p className="bg-base border p-2 rounded">
+            Description : {data.assignmentDescription}
+          </p>
+          <p>Total Marks : {data.totalMarks}</p>
+          <div className="w-full flex justify-center items-center">
+            <img src={data.thumbnail} alt="" className="w-96 rounded" />
+          </div>
+          <p className="bg-base border p-2 rounded">
+            Due Date : {data.dueDate}
+          </p>
+          <div className="space-x-4"></div>
+        </div>
       </div>
 
       <button
-        className="btn btn-soft btn-accent"
+        className="btn btn-soft btn-accent mb-8"
         onClick={() => document.getElementById("my_modal_1").showModal()}
       >
         Take Assignment

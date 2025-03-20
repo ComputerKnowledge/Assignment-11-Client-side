@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import SingleAssignment from "./SingleAssignment";
-import { useLoaderData } from "react-router-dom";
+
 import Auth from "../context/AuthContext";
 
 const Assignment = () => {
@@ -35,6 +35,7 @@ const Assignment = () => {
   //   }
   // };
   // console.log(data);
+
   const handleDelete = async (id) => {
     // console.log(id);
 
@@ -58,25 +59,29 @@ const Assignment = () => {
   }
   return (
     <div>
-      <h1>Hello form assignment page.</h1>
+      <h1 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl">
+        Welcome to the assignment page
+      </h1>
 
-      {finish
-        ? assignment?.map((data, idx) => (
-            <SingleAssignment
-              onDelete={handleDelete}
-              data={data}
-              idx={idx}
-              key={data._id}
-            ></SingleAssignment>
-          ))
-        : data?.map((data, idx) => (
-            <SingleAssignment
-              onDelete={handleDelete}
-              data={data}
-              idx={idx}
-              key={data._id}
-            ></SingleAssignment>
-          ))}
+      <div className="justify-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {finish
+          ? assignment?.map((data, idx) => (
+              <SingleAssignment
+                onDelete={handleDelete}
+                data={data}
+                idx={idx}
+                key={data._id}
+              ></SingleAssignment>
+            ))
+          : data?.map((data, idx) => (
+              <SingleAssignment
+                onDelete={handleDelete}
+                data={data}
+                idx={idx}
+                key={data._id}
+              ></SingleAssignment>
+            ))}
+      </div>
     </div>
   );
 };

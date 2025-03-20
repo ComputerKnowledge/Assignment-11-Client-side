@@ -19,7 +19,7 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "Assignment created successfully.",
+          title: "Assignment deleted successfully.",
           showConfirmButton: false,
           timer: 2000,
         });
@@ -36,31 +36,58 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
   };
 
   return (
-    <div>
-      <h2 className="mt-10 text-5xl">hello world {idx + 1}</h2>
-      <p>{data._id}</p>
-      <p>{data.assignmentTitle}</p>
-      <p>{data.assignmentDescription}</p>
-      <p>{data.totalMarks}</p>
-      <p>{data.thumbnail}</p>
-      <p>{data.difficultyLevel}</p>
-      <p>{data.dueDate}</p>
-      <p>{data.createdBy}</p>
-      <div className="space-x-4">
-        <button className="btn btn-soft btn-accent">
-          <Link to={`/viewDetails/${data._id}`}> View</Link>
-        </button>
-        <button className="btn btn-soft btn-accent">
-          <Link to={`/updatePage/${data._id}`}>Update</Link>
-        </button>
-        <button
-          onClick={() => handleDelete(data._id)}
-          className="btn btn-soft btn-accent"
-        >
-          Delete
-        </button>
+    <div className="card bg-base-100 w-96 shadow-sm border my-4">
+      <figure>
+        <img src={data.thumbnail} alt="Shoes" />
+      </figure>
+      <div className="card-body py-6 p-2">
+        <h2 className="card-title">{data.assignmentTitle}</h2>
+        <p className="text-left">
+          This assignment was created by {data.createdBy} on {data.dueDate}
+        </p>
+
+        <div className="flex justify-evenly">
+          <button className="btn btn-soft btn-accent">
+            <Link to={`/viewDetails/${data._id}`}> View</Link>
+          </button>
+          <button className="btn btn-soft btn-accent">
+            <Link to={`/updatePage/${data._id}`}>Update</Link>
+          </button>
+          <button
+            onClick={() => handleDelete(data._id)}
+            className="btn btn-soft btn-accent"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
+    // <div>
+
+    //   <h2 className="mt-10 text-5xl">{idx + 1}</h2>
+    //   <p>{data._id}</p>
+    //   <p>{data.assignmentTitle}</p>
+    //   <p>{data.assignmentDescription}</p>
+    //   <p>{data.totalMarks}</p>
+    //   <p>{data.thumbnail}</p>
+    //   <p>{data.difficultyLevel}</p>
+    //   <p>{data.dueDate}</p>
+    //   <p>{data.createdBy}</p>
+    // <div className="space-x-4">
+    //   <button className="btn btn-soft btn-accent">
+    //     <Link to={`/viewDetails/${data._id}`}> View</Link>
+    //   </button>
+    //   <button className="btn btn-soft btn-accent">
+    //     <Link to={`/updatePage/${data._id}`}>Update</Link>
+    //   </button>
+    //   <button
+    //     onClick={() => handleDelete(data._id)}
+    //     className="btn btn-soft btn-accent"
+    //   >
+    //     Delete
+    //   </button>
+    // </div>
+    // </div>
   );
 };
 

@@ -37,7 +37,11 @@ const PendingAssignment = () => {
     return <span className="loading loading-bars loading-xl"></span>;
   }
   if (data.length === 0) {
-    return <div>Nothing to do here !</div>;
+    return (
+      <div className="text-2xl font-black my-20">
+        No Pending assignment is available now!
+      </div>
+    );
   }
 
   return (
