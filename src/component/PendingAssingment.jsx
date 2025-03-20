@@ -8,9 +8,12 @@ const PendingAssignment = () => {
   const [finishAll, setFinishAll] = useState(false);
   const [assignment, setAssignment] = useState(true);
   const fetchAssignments = async () => {
-    const res = await axios.get("http://localhost:5000/assignmentSubmit", {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      "https://assignment-11-theta-three.vercel.app/assignmentSubmit",
+      {
+        withCredentials: true,
+      }
+    );
     // console.log("hello world");
     // console.log(res);
     return res.data;

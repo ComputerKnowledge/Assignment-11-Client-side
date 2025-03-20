@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
       if (email) {
         axios
           .post(
-            "http://localhost:5000/jwt",
+            "https://assignment-11-theta-three.vercel.app/jwt",
             { email },
             {
               withCredentials: true,
@@ -67,7 +67,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "http://localhost:5000/logout",
+            "https://assignment-11-theta-three.vercel.app/logout",
             {},
             {
               withCredentials: true,

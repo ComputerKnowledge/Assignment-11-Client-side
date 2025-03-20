@@ -28,7 +28,10 @@ const SinglePending = ({ P_assignment: data, onDelete }) => {
     D.status = "completed";
     // console.log(D);
     axios
-      .put(`http://localhost:5000/assignmentSubmit/${data._id}`, { ...D })
+      .put(
+        `https://assignment-11-theta-three.vercel.app/assignmentSubmit/${data._id}`,
+        { ...D }
+      )
       .then((res) => {
         Swal.fire({
           position: "top",

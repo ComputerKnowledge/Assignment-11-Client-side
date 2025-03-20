@@ -10,9 +10,12 @@ const UpdatePage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const fetchDetailsWithId = async () => {
-    const res = await axios.get(`http://localhost:5000/assignments/${id}`, {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      `https://assignment-11-theta-three.vercel.app/assignments/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
     return res.data;
   };
   const { isPending, data } = useQuery({
@@ -31,7 +34,10 @@ const UpdatePage = () => {
     // console.log(data);
     if (user.email == data?.createdBy) {
       axios
-        .put(`http://localhost:5000/assignments/${data._id}`, totalData)
+        .put(
+          `https://assignment-11-theta-three.vercel.app/assignments/${data._id}`,
+          totalData
+        )
         .then((res) => {
           // console.log(res.data);
           if (res.data.modifiedCount > 0) {

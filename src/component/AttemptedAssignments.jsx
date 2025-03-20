@@ -8,7 +8,7 @@ const AttemptedAssignments = () => {
 
   const fetchData = async () => {
     const res = await axios.get(
-      `http://localhost:5000/assignmentSubmit/${user.email}`,
+      `https://assignment-11-theta-three.vercel.app/assignmentSubmit/${user.email}`,
       { withCredentials: true }
     );
     return res.data;

@@ -23,20 +23,25 @@ const CreateAssignments = () => {
     // console.log(totalData);
     // console.log(data);
 
-    // axios.get("http://localhost:5000/").then((res) => console.log(res.data));
-    axios.post("http://localhost:5000/assignments", totalData).then((res) => {
-      // console.log(res.data.insertedId);
+    // axios.get("https://assignment-11-theta-three.vercel.app/").then((res) => console.log(res.data));
+    axios
+      .post(
+        "https://assignment-11-theta-three.vercel.app/assignments",
+        totalData
+      )
+      .then((res) => {
+        // console.log(res.data.insertedId);
 
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Assignment created successfully",
-        showConfirmButton: false,
-        timer: 2000,
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Assignment created successfully",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        e.target.reset();
       });
-      e.target.reset();
-    });
-    // fetch("http://localhost:5000/").then((res) =>
+    // fetch("https://assignment-11-theta-three.vercel.app/").then((res) =>
     //   res.json().then((data) => console.log(data))
     // );
   };

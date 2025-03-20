@@ -13,17 +13,21 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
   const handleDelete = (id) => {
     // console.log(id);
     if (user.email == data.createdBy) {
-      axios.delete(`http://localhost:5000/assignments/${id}`).then((res) => {
-        // console.log(res);
-        onDelete(id);
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: "Assignment deleted successfully.",
-          showConfirmButton: false,
-          timer: 2000,
+      axios
+        .delete(
+          `https://assignment-11-theta-three.vercel.app/assignments/${id}`
+        )
+        .then((res) => {
+          // console.log(res);
+          onDelete(id);
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Assignment deleted successfully.",
+            showConfirmButton: false,
+            timer: 2000,
+          });
         });
-      });
     } else {
       Swal.fire({
         position: "top",

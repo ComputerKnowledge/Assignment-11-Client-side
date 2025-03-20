@@ -13,7 +13,9 @@ const Assignment = () => {
   const [finish, setFinish] = useState(false);
 
   const fetchAssignments = async () => {
-    const res = await axios.get("http://localhost:5000/assignments");
+    const res = await axios.get(
+      "https://assignment-11-theta-three.vercel.app/assignments"
+    );
     // console.log("hello world");
     // console.log(res);
     return res.data;
@@ -26,7 +28,7 @@ const Assignment = () => {
   // const handleDelete = (id) => {
   //   console.log(id);
   //   if (user.email == data.createdBy) {
-  //     axios.delete(`http://localhost:5000/assignments/${id}`).then((res) => {
+  //     axios.delete(`https://assignment-11-theta-three.vercel.app/assignments/${id}`).then((res) => {
   //       console.log(res);
   //       setAssignment(assignment.filter((assignment) => assignment._id !== id));
   //     });

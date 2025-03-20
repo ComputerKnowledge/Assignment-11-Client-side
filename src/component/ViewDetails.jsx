@@ -13,9 +13,12 @@ const ViewDetails = () => {
   const examinee = user.displayName;
   // console.log(id);
   const fetchDetailsWithId = async () => {
-    const res = await axios.get(`http://localhost:5000/assignments/${id}`, {
-      withCredentials: true,
-    });
+    const res = await axios.get(
+      `https://assignment-11-theta-three.vercel.app/assignments/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
     return res.data;
   };
   const { isPending, data } = useQuery({
@@ -31,7 +34,7 @@ const ViewDetails = () => {
     // console.log(oldData);
     delete data._id;
     axios
-      .post("http://localhost:5000/assignmentSubmit/", {
+      .post("https://assignment-11-theta-three.vercel.app/assignmentSubmit/", {
         ...Data,
         ...data,
         takingUser,
