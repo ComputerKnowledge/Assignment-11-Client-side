@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import Auth from "../context/AuthContext";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser, loginWithGoogle } = useContext(Auth);
   const navigate = useNavigate();
+  const location = useLocation();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -17,7 +19,7 @@ const Login = () => {
     e.target.reset();
     loginUser(email, password)
       .then((res) => {
-        navigate("/");
+        navigate(location.state ? location.state : "/");
       })
       .catch((err) => {
         Swal.fire({
