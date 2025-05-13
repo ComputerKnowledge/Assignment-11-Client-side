@@ -31,12 +31,12 @@ const HomeChart = () => {
   ];
   return (
     <div>
-      <h3 className=" text-4xl text-left font-bold mt-16">
-        Some statistic of students
+      <h3 className=" text-3xl sm:text-4xl md:text-5xl  font-bold mt-16">
+        Some statistic of student activity
       </h3>
       <Chart
         chartType="ColumnChart"
-        className="mt-6"
+        className="mt-10"
         width="100%"
         height="100%"
         data={data}

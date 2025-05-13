@@ -1,4 +1,3 @@
-// import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 
@@ -20,11 +19,7 @@ const Testimonials = () => {
 
   return (
     <section className="my-20">
-      {/* <SectionTitle
-        subHeading="What Our Client Say"
-        heading={"Testimonials"}
-      ></SectionTitle> */}
-      <h3 className=" text-4xl text-left font-bold my-0">
+      <h3 className=" text-3xl sm:text-4xl md:text-5xl font-bold my-0">
         Student's opinion about this application
       </h3>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
@@ -36,8 +31,8 @@ const Testimonials = () => {
                 value={review.rating}
                 readOnly
               />
-              <p className="py-8">{review.details}</p>
-              <h3 className="text-2xl text-orange-400">{review.name}</h3>
+              <p className="py-8 opacity-80">{review.details}</p>
+              <h3 className="text-2xl  text-orange-400">{review.name}</h3>
             </div>
           </SwiperSlide>
         ))}

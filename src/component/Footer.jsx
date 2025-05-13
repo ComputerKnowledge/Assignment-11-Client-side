@@ -19,7 +19,7 @@ const Footer = () => {
           <p>
             BJET Assignment Group
             <br />
-            Providing reliable tech since 1992
+            Providing reliable education since 1992
           </p>
         </aside>
         <nav>
