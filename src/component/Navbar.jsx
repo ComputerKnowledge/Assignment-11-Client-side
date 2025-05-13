@@ -66,15 +66,15 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-4">{link}</ul>
       </div>
-      <div className="navbar-end    space-x-2 ">
+      <div className="navbar-end space-x-2 ">
+        <input
+          type="checkbox"
+          value=""
+          className="hidden sm:toggle sm:theme-controller sm:mr-4 "
+          onClick={handleTheme}
+        />
         {user ? (
           <>
-            <input
-              type="checkbox"
-              value=""
-              className="hidden sm:toggle sm:theme-controller sm:mr-4 "
-              onClick={handleTheme}
-            />
             <div className="dropdown ">
               <div tabIndex={0} role="button" className="">
                 <div className="relative group ">

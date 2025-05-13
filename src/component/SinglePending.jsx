@@ -17,7 +17,7 @@ const SinglePending = ({ P_assignment: data, onDelete }) => {
         timer: 2000,
       });
     }
-    document.getElementById("my_modal_1").showModal();
+    document.getElementById(`my_modal_${data._id}`).showModal();
   };
   const handleMarking = (e, id) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const SinglePending = ({ P_assignment: data, onDelete }) => {
           timer: 2000,
         });
         onDelete(id);
-        document.getElementById("my_modal_1").close();
+        document.getElementById(`my_modal_${data._id}`).close();
       });
   };
   // if (false) {
@@ -60,11 +60,13 @@ const SinglePending = ({ P_assignment: data, onDelete }) => {
         Give mark
       </button>
 
-      <dialog id="my_modal_1" className="modal">
+      <dialog id={`my_modal_${data._id}`} className="modal">
         <div className="modal-box">
           <div className="text-right">
             <button
-              onClick={() => document.getElementById("my_modal_1").close()}
+              onClick={() =>
+                document.getElementById(`my_modal_${data._id}`).close()
+              }
               className=" btn btn-soft btn-accent "
             >
               X

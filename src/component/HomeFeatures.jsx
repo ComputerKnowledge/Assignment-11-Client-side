@@ -25,7 +25,7 @@ const HomeFeatures = () => {
         </p>
         <p className="bg-base-100 border-1 rounded-lg text-left p-4 text-xl font-semibold">
           No registered user will be able to see others information, because all
-          get request is maintained by jst token.
+          get request is maintained by jwt token.
         </p>
       </div>
     </div>

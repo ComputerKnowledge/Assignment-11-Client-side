@@ -3,7 +3,7 @@ import React from "react";
 const FaqSection = () => {
   return (
     <div className="my-8">
-      <h3 className="text-left text-3xl font-bold my-4">
+      <h3 className="text-left text-3xl font-bold mb-4 mt-0">
         Frequently asked questions !!!
       </h3>
       <div className="text-left collapse collapse-arrow bg-base-100 border border-base-300">

@@ -4,6 +4,9 @@ import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Auth from "../context/AuthContext";
 import Swal from "sweetalert2";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const UpdatePage = () => {
   const { user } = useContext(Auth);
@@ -61,6 +64,7 @@ const UpdatePage = () => {
         });
     }
   };
+  // console.log(data?.dueDate);
 
   const handleOnChange = () => {
     // console.log("hello world");
@@ -145,13 +149,10 @@ const UpdatePage = () => {
             </fieldset>
             <fieldset className="fieldset">
               <legend className="fieldset-legend text-left">Due Date</legend>
-              <input
-                type="date"
+              <DatePicker
+                selected={data.dueDate}
                 className="input w-full"
-                placeholder="Type here"
                 name="dueDate"
-                value={data.dueDate}
-                onChange={handleOnChange}
               />
             </fieldset>
             <button className="btn w-full btn-neutral my-4">Update</button>
