@@ -40,11 +40,11 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
   };
 
   return (
-    <div className="card bg-base-100 w-96 shadow-sm border my-4">
+    <div className="card p-0 bg-base-100 w-96 shadow-sm border my-4">
       <figure>
         <img src={data.thumbnail} alt="Shoes" />
       </figure>
-      <div className="card-body py-6 p-2">
+      <div className="card-body">
         <h2 className="card-title">{data.assignmentTitle}</h2>
         <p className="text-left">
           This assignment was created by {data.createdBy} on {data.dueDate}

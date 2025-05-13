@@ -10,12 +10,13 @@ import CreateAssignments from "../component/CreateAssignments";
 import AttemptedAssignments from "../component/AttemptedAssignments";
 import ViewDetails from "../component/ViewDetails";
 import UpdatePage from "../component/UpdatePage";
+import ErrorElement from "./ErrorElement";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement: <div>hey error</div>,
+    errorElement: <ErrorElement></ErrorElement>,
     children: [
       {
         path: "/",

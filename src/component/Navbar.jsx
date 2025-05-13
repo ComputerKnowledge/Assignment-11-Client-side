@@ -26,7 +26,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm p-0 px-4 fixed  mx-auto max-w-[1280px] z-50">
+    <div className="navbar bg-base-100 shadow-sm p-0 px-4 fixed top-0 mx-auto max-w-[1280px] z-50">
       <div className="navbar-start m-0 ">
         <div className="dropdown m-0 space-x-2">
           <div
