@@ -39,12 +39,12 @@ const HomeFeatures = () => {
   ];
 
   return (
-    <div className="my-16  mx-auto">
-      <h3 className="text-3xl sm:text-4xl md:text-5xl  font-bold mb-10 ">
-        Key Features of Our Platform
+    <div className="my-8 sm:my-16  mx-auto">
+      <h3 className="text-3xl sm:text-4xl md:text-5xl  font-bold sm:mb-10 ">
+        Key features of this application
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:gap-6">
         {features.map((feature, index) => (
           <div
             key={index}

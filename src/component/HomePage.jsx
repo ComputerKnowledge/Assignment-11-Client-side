@@ -9,10 +9,12 @@ const HomePage = () => {
   return (
     <div>
       <Banner></Banner>
-      <HomeFeatures></HomeFeatures>
-      <HomeChart></HomeChart>
-      <Testimonials></Testimonials>
-      <FaqSection></FaqSection>
+      <div className="px-4 lg:px-0">
+        <HomeFeatures></HomeFeatures>
+        <HomeChart></HomeChart>
+        <Testimonials></Testimonials>
+        <FaqSection></FaqSection>
+      </div>
     </div>
   );
 };
