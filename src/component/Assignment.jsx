@@ -57,15 +57,15 @@ const Assignment = () => {
   // console.log(newData?.length);
 
   if (isPending) {
-    return <span className="loading loading-bars loading-xl"></span>;
+    return <span className="loading loading-bars loading-xl mt-32"></span>;
   }
   return (
-    <div>
-      <h1 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl">
+    <div className="mt-24 text-center">
+      <h1 className="text-xl my-4 sm:text-3xl lg:text-4xl">
         Welcome to the assignment page
       </h1>
 
-      <div className="justify-items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {finish
           ? assignment?.map((data, idx) => (
               <SingleAssignment

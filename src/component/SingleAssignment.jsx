@@ -44,7 +44,7 @@ const SingleAssignment = ({ data, onDelete, idx }) => {
       <figure>
         <img src={data.thumbnail} alt="Shoes" />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-2">
         <h2 className="card-title">{data.assignmentTitle}</h2>
         <p className="text-left">
           This assignment was created by {data.createdBy} on {data.dueDate}

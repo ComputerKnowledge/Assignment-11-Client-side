@@ -46,7 +46,7 @@ const CreateAssignments = () => {
     // );
   };
   return (
-    <div>
+    <div className="mt-24">
       <h3 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl">
         Create new assignments here.
       </h3>

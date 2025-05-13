@@ -37,18 +37,20 @@ const PendingAssignment = () => {
   };
 
   if (isPending) {
-    return <span className="loading loading-bars loading-xl"></span>;
+    return (
+      <span className="text-center loading loading-bars loading-xl mt-32"></span>
+    );
   }
   if (data.length === 0) {
     return (
-      <div className="text-2xl font-black my-20">
+      <div className="text-2xl font-black my-32">
         No Pending assignment is available now!
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="mt-24 text-center">
       {finish
         ? assignment?.map((data) => (
             <SinglePending

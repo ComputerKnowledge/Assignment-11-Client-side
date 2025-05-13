@@ -18,11 +18,13 @@ const AttemptedAssignments = () => {
     queryFn: fetchData,
   });
   if (isPending) {
-    return <span className="loading loading-bars loading-xl"></span>;
+    return (
+      <span className="text-center loading loading-bars loading-xl mt-32"></span>
+    );
   }
   if (data?.length === 0) {
     return (
-      <div className="text-2xl font-black my-20">
+      <div className="text-2xl font-black my-40">
         you have not attempted any assignment yet!
       </div>
     );
@@ -30,7 +32,7 @@ const AttemptedAssignments = () => {
   // console.log(data);
   return (
     <div>
-      <h3 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl">
+      <h3 className="text-xl font-black my-4 sm:text-3xl lg:text-4xl mt-24">
         Your attempted assignments.
       </h3>
 
